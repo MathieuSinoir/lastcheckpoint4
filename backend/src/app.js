@@ -4,6 +4,8 @@ const express = require("express");
 
 const app = express();
 
+const teamControllers = require("./controllers/teamControllers");
+
 // Configure it
 
 /* ************************************************************************* */
@@ -90,6 +92,7 @@ const router = require("./router");
 // Mount the API routes under the "/api" endpoint
 app.use("/api", router);
 app.get("/", (req, res) => res.send("API-TEAM"));
+app.get("/team", teamControllers.getAllTeam);
 
 /* ************************************************************************* */
 
