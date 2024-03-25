@@ -93,6 +93,7 @@ const router = require("./router");
 app.use("/api", router);
 app.get("/", (req, res) => res.send("API-TEAM"));
 app.get("/team", teamControllers.getAllTeam);
+app.get("/team/:id", teamControllers.getPlayersByPosition);
 
 /* ************************************************************************* */
 
