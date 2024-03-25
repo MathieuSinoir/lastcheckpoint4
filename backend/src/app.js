@@ -89,6 +89,7 @@ const router = require("./router");
 
 // Mount the API routes under the "/api" endpoint
 app.use("/api", router);
+app.get("/", (req, res) => res.send("API-TEAM"));
 
 /* ************************************************************************* */
 
