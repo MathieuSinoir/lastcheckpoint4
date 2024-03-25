@@ -32,5 +32,10 @@ INSERT INTO user (email, password, username) VALUES
   
 
 INSERT INTO team(name, post, description, creation_datetime, user_id) VALUES
-('Ted Lasso', 'Coach', 'Coach de l equipe de Richmond', NOW(), 1),
-('Coach Beard', 'Coach', 'Coach en second de l equipe de Richmond', NOW(), 2);
+('Ted Lasso', 'Coach', 'Coach de l équipe de Richmond', NOW(), 1),
+('Coach Beard', 'Coach', 'Coach en second de l équipe de Richmond', NOW(), 2);
+
+
+
+
+
