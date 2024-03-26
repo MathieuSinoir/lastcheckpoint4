@@ -1,17 +1,14 @@
 const database = require("../../database/client");
 
-const getAllTeam = async (req, res) => {
+const getAllTeam = async (req, res, next) => {
   try {
     const [teams] = await database.query("SELECT * FROM team");
     res.json(teams);
   } catch (err) {
-    console.error(err);
-    res
-      .status(500)
-      .send("Une erreur est survenue lors de la récupération des équipes.");
+    next(err);
   }
 };
-const getPlayersByPosition = async (req, res) => {
+const getPlayersByPosition = async (req, res, next) => {
   try {
     const PlayerPositionId = req.params.poste;
     const [players] = await database.query("SELECT * FROM team WHERE poste=?", [
@@ -19,16 +16,11 @@ const getPlayersByPosition = async (req, res) => {
     ]);
     res.json(players);
   } catch (err) {
-    console.error(err);
-    res
-      .status(500)
-      .send(
-        "Une erreur est survenue lors de la récupération des joueurs par position."
-      );
+    next(err);
   }
 };
 
-const addPlayer = async (req, res) => {
+const addPlayer = async (req, res, next) => {
   const { name, poste, description, userId } = req.body;
 
   try {
@@ -40,12 +32,11 @@ const addPlayer = async (req, res) => {
     console.info(results);
     res.status(200).send("Ajouté avec succès");
   } catch (err) {
-    console.error(err);
-    res.status(500).send("Une erreur est survenue lors de l'ajout du joueur");
+    next(err);
   }
 };
 
-const updatePlayer = async (req, res) => {
+const updatePlayer = async (req, res, next) => {
   try {
     const { id } = req.params;
     const { name, poste, description } = req.body;
@@ -58,13 +49,11 @@ const updatePlayer = async (req, res) => {
     console.info(result);
     res.send("Joueur modifié avec succès.");
   } catch (err) {
-    console.error(err);
-    res
-      .status(500)
-      .send("Une erreur s'est produite lors de la modification du joueur.");
+    next(err);
   }
 };
-const deletePlayer = async (req, res) => {
+
+const deletePlayer = async (req, res, next) => {
   try {
     const { id } = req.params;
 
@@ -73,10 +62,7 @@ const deletePlayer = async (req, res) => {
     console.info(result);
     res.send("Joueur supprimé avec succès.");
   } catch (err) {
-    console.error(err);
-    res
-      .status(500)
-      .send("Une erreur s'est produite lors de la suppression du joueur.");
+    next(err);
   }
 };
 
