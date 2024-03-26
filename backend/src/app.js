@@ -56,7 +56,7 @@ app.use(
 
 // Uncomment one or more of these options depending on the format of the data sent by your client:
 
-// app.use(express.json());
+app.use(express.json());
 // app.use(express.urlencoded());
 // app.use(express.text());
 // app.use(express.raw());
@@ -93,6 +93,11 @@ const router = require("./router");
 app.use("/api", router);
 app.get("/", (req, res) => res.send("API-TEAM"));
 app.get("/team", teamControllers.getAllTeam);
+app.get("/team/:poste", teamControllers.getPlayersByPosition);
+
+app.post("/team", teamControllers.addPlayer);
+
+app.put("/team/:id", teamControllers.updatePlayer);
 
 /* ************************************************************************* */
 
