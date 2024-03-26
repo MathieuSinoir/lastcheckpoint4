@@ -2,6 +2,8 @@ const express = require("express");
 
 const router = express.Router();
 
+const teamControllers = require("./controllers/teamControllers");
+
 /* ************************************************************************* */
 // Define Your API Routes Here
 /* ************************************************************************* */
@@ -17,6 +19,17 @@ router.get("/items/:id", itemControllers.read);
 
 // Route to add a new item
 router.post("/items", itemControllers.add);
+
+router.use("/api", router);
+router.get("/", (req, res) => res.send("API-TEAM"));
+router.get("/team", teamControllers.getAllTeam);
+router.get("/team/:poste", teamControllers.getPlayersByPosition);
+
+router.post("/team", teamControllers.addPlayer);
+
+router.put("/team/:id", teamControllers.updatePlayer);
+
+router.delete("/team/:id", teamControllers.deletePlayer);
 
 /* ************************************************************************* */
 
