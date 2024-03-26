@@ -99,6 +99,8 @@ app.post("/team", teamControllers.addPlayer);
 
 app.put("/team/:id", teamControllers.updatePlayer);
 
+app.delete("/team/:id", teamControllers.deletePlayer);
+
 /* ************************************************************************* */
 
 // Production-ready setup: What is it for, and when should I enable it?
