@@ -1,29 +1,26 @@
 const database = require("../../database/client");
 
-const getAllTeam = (req, res) => {
-  database
-    .query("SELECT * FROM team")
-    .then(([team]) => {
-      res.json(team);
-    })
-    .catch((err) => {
-      console.error(err);
-    });
+const getAllTeam = async (req, res, next) => {
+  try {
+    const [teams] = await database.query("SELECT * FROM team");
+    res.json(teams);
+  } catch (err) {
+    next(err);
+  }
+};
+const getPlayersByPosition = async (req, res, next) => {
+  try {
+    const PlayerPositionId = req.params.poste;
+    const [players] = await database.query("SELECT * FROM team WHERE poste=?", [
+      PlayerPositionId,
+    ]);
+    res.json(players);
+  } catch (err) {
+    next(err);
+  }
 };
 
-const getPlayersByPosition = (req, res) => {
-  const PlayerPositionId = req.params.poste;
-  database
-    .query("SELECT * FROM team WHERE poste=?", [PlayerPositionId])
-    .then(([players]) => {
-      res.json(players);
-    })
-    .catch((err) => {
-      console.error(err);
-    });
-};
-
-const addPlayer = async (req, res) => {
+const addPlayer = async (req, res, next) => {
   const { name, poste, description, userId } = req.body;
 
   try {
@@ -35,30 +32,44 @@ const addPlayer = async (req, res) => {
     console.info(results);
     res.status(200).send("Ajouté avec succès");
   } catch (err) {
-    console.error(err);
-    res.status(500).send("Une erreur est survenue lors de l'ajout du joueur");
+    next(err);
   }
 };
 
-const updatePlayer = (req, res) => {
-  const { id } = req.params; // Utilisation de la destructuration pour une meilleure clarté
-  const { name, poste, description } = req.body; // Idem ici pour les propriétés de req.body
+const updatePlayer = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { name, poste, description } = req.body;
 
-  database
-    .query(
+    const result = await database.query(
       "UPDATE team SET name = ?, poste = ?, description = ?, creation_datetime = NOW() WHERE id = ?",
       [name, poste, description, id]
-    )
-    .then((result) => {
-      console.info(result);
-      res.send("Joueur modifié avec succès.");
-    })
-    .catch((err) => {
-      console.error(err);
-      res
-        .status(500)
-        .send("Une erreur s'est produite lors de la modification du joueur.");
-    });
+    );
+
+    console.info(result);
+    res.send("Joueur modifié avec succès.");
+  } catch (err) {
+    next(err);
+  }
 };
 
-module.exports = { getAllTeam, getPlayersByPosition, addPlayer, updatePlayer };
+const deletePlayer = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    const result = await database.query("DELETE FROM team WHERE id=?", [id]);
+
+    console.info(result);
+    res.send("Joueur supprimé avec succès.");
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports = {
+  getAllTeam,
+  getPlayersByPosition,
+  addPlayer,
+  updatePlayer,
+  deletePlayer,
+};
