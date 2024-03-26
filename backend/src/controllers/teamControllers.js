@@ -61,4 +61,28 @@ const updatePlayer = (req, res) => {
     });
 };
 
-module.exports = { getAllTeam, getPlayersByPosition, addPlayer, updatePlayer };
+const deletePlayer = (req, res) => {
+  const { id } = req.params;
+
+  database
+    .query("DELETE FROM team WHERE id=?", [id])
+    .then((result) => {
+      console.info(result);
+      res.send("Joueur supprimé avec succès.");
+    })
+    .catch((err) => {
+      console.error(err);
+
+      res
+        .status(500)
+        .send("Une erreur s'est produite lors de la modification du joueur.");
+    });
+};
+
+module.exports = {
+  getAllTeam,
+  getPlayersByPosition,
+  addPlayer,
+  updatePlayer,
+  deletePlayer,
+};
