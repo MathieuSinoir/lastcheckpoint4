@@ -89,7 +89,6 @@ app.use(express.json());
 // Import the API routes from the router module
 const router = require("./router");
 
-// Mount the API routes under the "/api" endpoint
 app.use("/api", router);
 app.get("/", (req, res) => res.send("API-TEAM"));
 app.get("/team", teamControllers.getAllTeam);
@@ -100,6 +99,8 @@ app.post("/team", teamControllers.addPlayer);
 app.put("/team/:id", teamControllers.updatePlayer);
 
 app.delete("/team/:id", teamControllers.deletePlayer);
+
+// Mount the API routes under the "/api" endpoint
 
 /* ************************************************************************* */
 

@@ -1,36 +1,38 @@
-const database = require("../../database/client");
+const tables = require("../tables");
 
 const getAllTeam = async (req, res, next) => {
   try {
-    const [teams] = await database.query("SELECT * FROM team");
+    const teams = await tables.team.readAll("SELECT * FROM team");
     res.json(teams);
   } catch (err) {
     next(err);
   }
 };
+
 const getPlayersByPosition = async (req, res, next) => {
+  const { id } = req.params;
   try {
-    const PlayerPositionId = req.params.poste;
-    const [players] = await database.query("SELECT * FROM team WHERE poste=?", [
-      PlayerPositionId,
-    ]);
-    res.json(players);
+    const PlayersId = await tables.team.read(id);
+    res.json(PlayersId);
   } catch (err) {
     next(err);
   }
 };
 
 const addPlayer = async (req, res, next) => {
-  const { name, poste, description, userId } = req.body;
+  const playersInfos = {
+    name: req.body.name,
+    poste: req.body.poste,
+    description: req.body.description,
+  };
 
   try {
-    const results = await database.query(
-      "INSERT INTO team (name, poste, description, creation_datetime, userId) VALUES(?,?,?,NOW(),?)",
-      [name, poste, description, userId]
-    );
-
-    console.info(results);
-    res.status(200).send("Ajouté avec succès");
+    const result = await tables.team.create(playersInfos);
+    console.info(result);
+    res.status(200).json({
+      msg: "Joueur enregistré avec succès",
+      status: result,
+    });
   } catch (err) {
     next(err);
   }
@@ -41,10 +43,7 @@ const updatePlayer = async (req, res, next) => {
     const { id } = req.params;
     const { name, poste, description } = req.body;
 
-    const result = await database.query(
-      "UPDATE team SET name = ?, poste = ?, description = ?, creation_datetime = NOW() WHERE id = ?",
-      [name, poste, description, id]
-    );
+    const result = await tables.team.update(id, { name, poste, description });
 
     console.info(result);
     res.send("Joueur modifié avec succès.");
@@ -57,7 +56,7 @@ const deletePlayer = async (req, res, next) => {
   try {
     const { id } = req.params;
 
-    const result = await database.query("DELETE FROM team WHERE id=?", [id]);
+    const result = await tables.team.delete(id);
 
     console.info(result);
     res.send("Joueur supprimé avec succès.");

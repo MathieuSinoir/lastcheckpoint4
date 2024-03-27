@@ -1,9 +1,3 @@
-DROP DATABASE IF EXISTS RichemondPlayers;
-CREATE DATABASE RichemondPlayers;
-USE RichemondPlayers;
-
-  
-
 create table user (
 id INT AUTO_INCREMENT PRIMARY KEY,
 email VARCHAR(255) NOT NULL,
