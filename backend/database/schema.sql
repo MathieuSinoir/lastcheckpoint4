@@ -14,8 +14,8 @@ name VARCHAR(250) NOT NULL,
 poste VARCHAR(250) NOT NULL,
 description TEXT NOT NULL,
 creation_datetime DATETIME NOT NULL,
-user_id INT,
-FOREIGN KEY (user_id) REFERENCES user(id)
+userId INT,
+FOREIGN KEY (userId) REFERENCES user(id)
 );
 
   
@@ -34,7 +34,7 @@ INSERT INTO user (email, password, username) VALUES
 
 
 
-INSERT INTO team(name, poste, description, creation_datetime, user_id) VALUES
+INSERT INTO team(name, poste, description, creation_datetime, userId) VALUES
 ('Ted Lasso', 'Coach', 'Coach de l équipe de Richmond', NOW(), 1),
 ('Coach Beard', 'Coach', 'Coach en second de l équipe de Richmond', NOW(), 2),
 ('Zoro', 'Gardien', 'Gardien de l équipe A', NOW(), 3),
