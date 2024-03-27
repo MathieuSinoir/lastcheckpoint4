@@ -10,10 +10,10 @@ const getAllTeam = async (req, res, next) => {
 };
 
 const getPlayersByPosition = async (req, res, next) => {
-  const { id } = req.params;
+  const { poste } = req.params;
   try {
-    const PlayersId = await tables.team.read(id);
-    res.json(PlayersId);
+    const playerByposition = await tables.team.read(poste);
+    res.json(playerByposition);
   } catch (err) {
     next(err);
   }

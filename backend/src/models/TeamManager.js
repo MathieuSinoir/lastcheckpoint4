@@ -10,10 +10,10 @@ class TeamManager extends AbstractManager {
     return rows;
   }
 
-  async read(id) {
+  async read(poste) {
     const [rows] = await this.database.query(
-      `select * from ${this.table} where id = ?`,
-      [id]
+      `select * from ${this.table} where poste = ?`,
+      [poste]
     );
     return rows;
   }
