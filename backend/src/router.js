@@ -20,7 +20,6 @@ router.get("/items/:id", itemControllers.read);
 router.post("/items", itemControllers.add);
 
 router.use("/api", router);
-router.get("/", (req, res) => res.send("API-TEAM"));
 router.get("/team", teamControllers.getAllTeam);
 router.get("/team/:poste", teamControllers.getPlayersByPosition);
 
