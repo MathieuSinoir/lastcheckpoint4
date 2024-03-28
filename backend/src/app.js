@@ -96,8 +96,6 @@ app.get("/team/:poste", teamControllers.getPlayersByPosition);
 
 app.post("/team", teamControllers.addPlayer);
 
-app.put("/team/:id", teamControllers.updatePlayer);
-
 app.delete("/team/:id", teamControllers.deletePlayer);
 
 // Mount the API routes under the "/api" endpoint
