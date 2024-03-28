@@ -93,6 +93,7 @@ app.use("/api", router);
 app.get("/", (req, res) => res.send("API-TEAM"));
 app.get("/team", teamControllers.getAllTeam);
 app.get("/team/:poste", teamControllers.getPlayersByPosition);
+app.get("/team/:id", teamControllers.getPlayersById);
 
 app.post("/team", teamControllers.addPlayer);
 

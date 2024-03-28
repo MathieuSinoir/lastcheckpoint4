@@ -12,8 +12,18 @@ const getAllTeam = async (req, res, next) => {
 const getPlayersByPosition = async (req, res, next) => {
   const { poste } = req.params;
   try {
-    const playerByposition = await tables.team.read(poste);
+    const playerByposition = await tables.team.readById(poste);
     res.json(playerByposition);
+  } catch (err) {
+    next(err);
+  }
+};
+
+const getPlayersById = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const playerById = await tables.team.read(id);
+    res.json(playerById);
   } catch (err) {
     next(err);
   }
@@ -68,6 +78,7 @@ const deletePlayer = async (req, res, next) => {
 module.exports = {
   getAllTeam,
   getPlayersByPosition,
+  getPlayersById,
   addPlayer,
   updatePlayer,
   deletePlayer,

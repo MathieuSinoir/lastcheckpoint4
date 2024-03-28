@@ -18,6 +18,14 @@ class TeamManager extends AbstractManager {
     return rows;
   }
 
+  async readById(id) {
+    const [rows] = await this.database.query(
+      `select * from ${this.table} where id = ?`,
+      [id]
+    );
+    return rows;
+  }
+
   async create(team) {
     const [rows] = await this.database.query(
       `INSERT INTO ${this.table} (name, poste, description, creation_datetime) VALUES (?, ?, ?, NOW())`,
