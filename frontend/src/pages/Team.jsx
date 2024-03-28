@@ -1,7 +1,20 @@
-export default function Team() {
+import React from "react";
+import PropTypes from "prop-types";
+
+export default function Team({ team }) {
   return (
-    <div>
-      <h1>Liste de l'équipe :</h1>
-    </div>
+    <article>
+      <h3>{team.name}</h3>
+      <h5>{team.poste}</h5>
+      <p>{team.description}</p>
+    </article>
   );
 }
+
+Team.propTypes = {
+  team: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    poste: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+  }).isRequired,
+};
