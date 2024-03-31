@@ -5,7 +5,7 @@ import axios from "axios";
 
 import App from "./App";
 import Home from "./pages/Home";
-import Team from "./pages/Team";
+import Teams from "./pages/Teams";
 
 const router = createBrowserRouter([
   {
@@ -17,7 +17,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/team",
-        element: <Team />,
+        element: <Teams />,
         loader: () =>
           axios
             .get(`${import.meta.env.VITE_BACKEND_URL}/api/team`)
@@ -27,9 +27,8 @@ const router = createBrowserRouter([
   },
 ]);
 
-export default App;
-
-ReactDOM.createRoot(document.getElementById("root")).render(
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
   <React.StrictMode>
     <RouterProvider router={router} />
   </React.StrictMode>
