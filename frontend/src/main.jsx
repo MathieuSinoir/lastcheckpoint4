@@ -6,6 +6,7 @@ import axios from "axios";
 import App from "./App";
 import Home from "./pages/Home";
 import Teams from "./pages/Teams";
+import NewPlayer from "./pages/NewPlayer";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
           axios
             .get(`${import.meta.env.VITE_BACKEND_URL}/api/team`)
             .then((response) => response.data),
+      },
+      {
+        path: "/newplayer",
+        element: <NewPlayer />,
       },
     ],
   },
