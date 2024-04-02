@@ -6,7 +6,7 @@ export default function Teams() {
   const navigate = useNavigate();
 
   const refreshPage = () => {
-    navigate("/teams", { replace: true });
+    navigate("/team", { replace: true });
   };
 
   return (
