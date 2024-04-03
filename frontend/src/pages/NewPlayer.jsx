@@ -1,6 +1,8 @@
 import { React, useState } from "react";
 import axios from "axios";
 
+import Navbar from "../components/Navbar";
+
 export default function NewPlayer() {
   const [newPlayer, setNewPlayer] = useState({
     name: "",
@@ -26,6 +28,7 @@ export default function NewPlayer() {
   return (
     <>
       <h1>Créer un joueur</h1>
+      <Navbar />
       <form onSubmit={submitPlayer}>
         <label htmlFor="playersName">Nom du joueur :</label>
         <input

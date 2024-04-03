@@ -4,6 +4,10 @@ const express = require("express");
 
 const app = express();
 
+// app.use("/public/*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "../", req.originalUrl));
+// });
+
 // Configure it
 
 /* ************************************************************************* */
@@ -33,7 +37,6 @@ app.use(
   })
 );
 
-const teamControllers = require("./controllers/teamControllers");
 /* ************************************************************************* */
 
 // Request Parsing: Understanding the purpose of this part
@@ -83,13 +86,6 @@ app.use(express.json());
 const router = require("./router");
 
 app.use("/api", router);
-app.get("/", (req, res) => res.send("API-TEAM"));
-app.get("/team", teamControllers.getAllTeam);
-app.get("/team/:poste", teamControllers.getPlayersByPosition);
-
-app.post("/team", teamControllers.addPlayer);
-
-app.delete("/team/:id", teamControllers.deletePlayer);
 
 // Mount the API routes under the "/api" endpoint
 
