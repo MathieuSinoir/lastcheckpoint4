@@ -1,5 +1,8 @@
 import { useLoaderData, useNavigate } from "react-router-dom";
 import Team from "../components/Team";
+import Navbar from "../components/Navbar";
+
+import "../styles/teams.css";
 
 export default function Teams() {
   const teams = useLoaderData();
@@ -10,11 +13,14 @@ export default function Teams() {
   };
 
   return (
-    <>
-      <h1>Liste des Équipes :</h1>
-      {teams.map((team) => (
-        <Team key={team.id} team={team} refreshPage={refreshPage} />
-      ))}
-    </>
+    <div className="teamPanel">
+      <h1 className="titre">Liste des Joueurs :</h1>
+      <Navbar />
+      <div className="map">
+        {teams.map((team) => (
+          <Team key={team.id} team={team} refreshPage={refreshPage} />
+        ))}
+      </div>
+    </div>
   );
 }

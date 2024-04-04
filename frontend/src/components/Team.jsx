@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 
+import "../styles/team.css";
+
 export default function Team({ team, refreshPage }) {
   const [editing, setEditing] = useState(false);
   const [modifyPlayer, setModifyPlayer] = useState({
@@ -47,8 +49,8 @@ export default function Team({ team, refreshPage }) {
     <article>
       {!editing ? (
         <>
+          <h2>{team.poste}</h2>
           <h3>{team.name}</h3>
-          <h5>{team.poste}</h5>
           <p>{team.description}</p>
           <button type="button" onClick={deletePlayer}>
             Supprimer Joueur
