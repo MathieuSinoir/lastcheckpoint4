@@ -54,7 +54,7 @@ export default function NewPlayer() {
             onChange={handleChangeForm}
             id="content"
           />
-          <input type="submit" />
+          <input className="btnEnvoyer" type="submit" />
         </form>
       </div>
     </div>
