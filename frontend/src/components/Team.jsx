@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 
+import "../styles/team.css";
+
 export default function Team({ team, refreshPage }) {
   const [editing, setEditing] = useState(false);
   const [modifyPlayer, setModifyPlayer] = useState({
