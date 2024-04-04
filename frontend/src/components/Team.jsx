@@ -60,32 +60,34 @@ export default function Team({ team, refreshPage }) {
           </button>
         </>
       ) : (
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="name">Nom :</label>
-          <input
-            type="text"
-            name="name"
-            value={modifyPlayer.name}
-            onChange={handleChange}
-          />
-          <label htmlFor="poste">Poste :</label>
-          <input
-            type="text"
-            name="poste"
-            value={modifyPlayer.poste}
-            onChange={handleChange}
-          />
-          <label htmlFor="description">Description :</label>
-          <textarea
-            name="description"
-            value={modifyPlayer.description}
-            onChange={handleChange}
-          />
-          <button type="submit">Enregistrer</button>
-          <button type="button" onClick={toggleEditing}>
-            Annuler
-          </button>
-        </form>
+        <div className="modificationPlayeBtn">
+          <form className="modificationPlayerBtnForm" onSubmit={handleSubmit}>
+            <label htmlFor="name">Nom :</label>
+            <input
+              type="text"
+              name="name"
+              value={modifyPlayer.name}
+              onChange={handleChange}
+            />
+            <label htmlFor="poste">Poste :</label>
+            <input
+              type="text"
+              name="poste"
+              value={modifyPlayer.poste}
+              onChange={handleChange}
+            />
+            <label htmlFor="description">Description :</label>
+            <textarea
+              name="description"
+              value={modifyPlayer.description}
+              onChange={handleChange}
+            />
+            <button type="submit">Enregistrer</button>
+            <button type="button" onClick={toggleEditing}>
+              Annuler
+            </button>
+          </form>
+        </div>
       )}
     </article>
   );

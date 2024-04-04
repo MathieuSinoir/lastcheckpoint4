@@ -6,7 +6,7 @@ username VARCHAR(255) NOT NULL
 );
 
   
-  
+
 
 CREATE TABLE team(
 id INT AUTO_INCREMENT PRIMARY KEY,
