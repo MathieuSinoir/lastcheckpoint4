@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&family=Space+Grotesk&display=swap");
+h1 {
+  font-weight: bold;
+  text-align: center;
+  color: aliceblue;
+  font-size: 5rem;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.home_page {
+  height: 100vh;
+  width: 100vw;
+  background-image: url(src/assets/richmon.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}

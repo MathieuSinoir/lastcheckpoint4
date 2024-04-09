@@ -6,7 +6,7 @@ username VARCHAR(255) NOT NULL
 );
 
   
-  
+
 
 CREATE TABLE team(
 id INT AUTO_INCREMENT PRIMARY KEY,
@@ -18,8 +18,8 @@ userId INT,
 FOREIGN KEY (userId) REFERENCES user(id)
 );
 
-  
-
+-- fonctionne mais que dans le sql terminal
+SELECT team.id, team.name, team.poste, team.description, team.creation_datetime, user.username FROM team INNER JOIN user ON team.userId = user.id;
 INSERT INTO user (email, password, username) VALUES
 ('admin@gmail.com', 'secret', 'admin'),
 ('ted@gmail.com', 'secret', 'Beard'),

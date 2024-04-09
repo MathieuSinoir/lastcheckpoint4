@@ -4,7 +4,9 @@ const express = require("express");
 
 const app = express();
 
-const teamControllers = require("./controllers/teamControllers");
+// app.use("/public/*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "../", req.originalUrl));
+// });
 
 // Configure it
 
@@ -27,19 +29,13 @@ const teamControllers = require("./controllers/teamControllers");
 // 4. Be sure to only have URLs in the array with domains from which you want to allow requests.
 // For example: ["http://mysite.com", "http://another-domain.com"]
 
-/*
 const cors = require("cors");
 
 app.use(
   cors({
-    origin: [
-      process.env.FRONTEND_URL, // keep this one, after checking the value in `backend/.env`
-      "http://mysite.com",
-      "http://another-domain.com",
-    ]
+    origin: [process.env.FRONTEND_URL],
   })
 );
-*/
 
 /* ************************************************************************* */
 
@@ -90,15 +86,6 @@ app.use(express.json());
 const router = require("./router");
 
 app.use("/api", router);
-app.get("/", (req, res) => res.send("API-TEAM"));
-app.get("/team", teamControllers.getAllTeam);
-app.get("/team/:poste", teamControllers.getPlayersByPosition);
-
-app.post("/team", teamControllers.addPlayer);
-
-app.put("/team/:id", teamControllers.updatePlayer);
-
-app.delete("/team/:id", teamControllers.deletePlayer);
 
 // Mount the API routes under the "/api" endpoint
 

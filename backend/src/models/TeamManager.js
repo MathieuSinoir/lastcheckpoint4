@@ -25,6 +25,22 @@ class TeamManager extends AbstractManager {
     );
     return rows;
   }
+
+  async update(team) {
+    const [rows] = await this.database.query(
+      `UPDATE ${this.table} SET name=?, poste=?, description=?, creation_datetime=NOW() WHERE id=?`,
+      [team.name, team.poste, team.description, team.id]
+    );
+    return rows;
+  }
+
+  async destroy(id) {
+    const [rows] = await this.database.query(
+      `DELETE FROM ${this.table} WHERE id=?`,
+      [id]
+    );
+    return rows;
+  }
 }
 
 module.exports = TeamManager;

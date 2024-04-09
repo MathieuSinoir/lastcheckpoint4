@@ -12,8 +12,8 @@ const getAllTeam = async (req, res, next) => {
 const getPlayersByPosition = async (req, res, next) => {
   const { poste } = req.params;
   try {
-    const playerByposition = await tables.team.read(poste);
-    res.json(playerByposition);
+    const playerByPosition = await tables.team.read(poste);
+    res.json(playerByPosition);
   } catch (err) {
     next(err);
   }
@@ -39,14 +39,20 @@ const addPlayer = async (req, res, next) => {
 };
 
 const updatePlayer = async (req, res, next) => {
+  const playersInfos = {
+    name: req.body.name,
+    poste: req.body.poste,
+    description: req.body.description,
+    id: req.params.id,
+  };
+
   try {
-    const { id } = req.params;
-    const { name, poste, description } = req.body;
-
-    const result = await tables.team.update(id, { name, poste, description });
-
-    console.info(result);
-    res.send("Joueur modifié avec succès.");
+    const result = await tables.team.update(playersInfos);
+    if (result.affectedRows === 0) {
+      res.status(404).json({ msg: "joueur introuvable" });
+    } else {
+      res.json({ msg: "joueur modifié avec succès" });
+    }
   } catch (err) {
     next(err);
   }
@@ -54,12 +60,12 @@ const updatePlayer = async (req, res, next) => {
 
 const deletePlayer = async (req, res, next) => {
   try {
-    const { id } = req.params;
-
-    const result = await tables.team.delete(id);
-
-    console.info(result);
-    res.send("Joueur supprimé avec succès.");
+    const result = await tables.team.destroy(req.params.id);
+    if (result.affectedRows === 0) {
+      res.status(404).json({ msg: "Joueur introuvable" });
+    } else {
+      res.json({ msg: "joueur supprimé avec succès" });
+    }
   } catch (err) {
     next(err);
   }

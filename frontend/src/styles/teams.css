@@ -1,0 +1,69 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&family=Space+Grotesk&display=swap");
+
+.teamPanel {
+  height: 113vh;
+  width: 100vw;
+  background-image: url(src/assets/player.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.teamPanel > .titre {
+  font-family: "Space Grotesk", sans-serif;
+  color: black;
+}
+
+.teamPanel > .map {
+  width: 100vw;
+  height: 50vh;
+  display: flex;
+  gap: 3rem;
+  margin-top: 3rem;
+  font-family: "Space Grotesk", sans-serif;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: center;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 30px;
+  color: #000000;
+  margin-bottom: 5px;
+}
+
+button {
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 15px;
+}
+
+article {
+  position: relative;
+  display: inline-block;
+  text-transform: uppercase;
+  color: #000000;
+  padding: 12px 18px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  line-height: 0.95;
+  border: 1px solid #cbc23b;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.modificationPlayeBtn > .modificationPlayerBtnForm {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+h2,
+h3,
+p,
+button {
+  padding: 1rem;
+}
+button {
+  margin-left: 1rem;
+}
