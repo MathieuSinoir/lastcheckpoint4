@@ -1,3 +1,12 @@
+## Concept du site :
+
+Le but du checkpoint est de faire se focalser sur un CRUD de A à Z.
+
+Pour ce faire j'ai pris le sujet de la serie Ted Lasso qui parle de football.
+
+Nous pouvons donc avoir la creation - modification - lecture de la BDD - effacer un joeur/staff.
+
+
 ## Concept
 
 This template is meant to serve as a foundation for every P2/P3 following the React-Express-MySQL stack, as learned in Wild Code School.
